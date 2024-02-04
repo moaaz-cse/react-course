@@ -16,7 +16,7 @@
 - the parameter(-D) before parcel is for mentioning Development dependency.
 - normally nmp i parcel are used iin production(can also be used in dev)
 
-# "parcel": "^2.11.0"(traeit(^) and tilde(~))
+# "parcel": "^2.11.0"(caret(^) and tilde(~))
 
 - Dev Build
 - Local Server
@@ -33,7 +33,7 @@
 - Differential Bundling - to support older browser,have different bundle for different browser.
 - Hosting on https.
 - Tree Shaking algorithm - remove unused file from the project.
-- trait(^),this up arrow ensure upgrading of package in up to that version only.
+- caret(^),this up arrow ensure upgrading of package in up to that version only.
 - tilde(~),this will upgrade for newer versions as well like parcel 3.0.2.
 
 # package-lock.json

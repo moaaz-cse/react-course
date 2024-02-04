@@ -22,6 +22,21 @@ const heading = React.createElement(
   "Hello world form react!"
 );
 console.log(heading); //object
+
+// JSX - HTML-like or XML-like syntax
+
+const jsxHeading = <h1 id="heading">Hello world using JSX!</h1>;
+//this code is transpiled before it reaches the JS-engine-done through PARCEL and transpiled by Babel.
+
+// React Component
+/**
+ * Two types of components
+ * 1. class-based component
+ * 2. function-based component fist-capital letter
+ */
+
+  
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(parent);
+root.render(jsxHeading);
