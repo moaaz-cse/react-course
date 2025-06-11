@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const onlineStatus = useOnlineStatus();
 
   // * Whenever a state variable updates or changes, react triggers a reconciliation cycle(re-renders the component)
   useEffect(() => {
@@ -18,6 +22,7 @@ const Body = () => {
     );
 
     const json = await data.json();
+    // console.log("jsonCard ", json);
 
     // console.log(json);
     setListOfRestaurants(
@@ -27,6 +32,9 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if (onlineStatus == false)
+    return <h1>You are offline, please theck your internet connectivity.</h1>;
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -69,7 +77,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant.info} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant.info} />
+          </Link>
         ))}
       </div>
     </div>

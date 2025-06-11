@@ -1,18 +1,11 @@
 import { LOGO_URL } from "../utils/constants";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
-  // console.log("header render");
-
-  //If no array dependency in useEffect, the useEffect will be called whenever the Header is rerendered
-  useEffect(() => {
-    console.log("Header rendered.");
-  });
-  //If there is empty array dependency in useEffect, the useEffect will be rendered only once when page loaded.
-  useEffect(() => {
-    console.log("rendered only once.");
-  }, []);
+  const onlineStatus = useOnlineStatus();
   return (
     <div className="header">
       <div className="logo-container">
@@ -20,10 +13,12 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
+          <li>Online Status:{onlineStatus ? "🟢" : "🔴"}</li>
+          <Link to="/">Home</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/contact">Contact Us</Link>
+          <Link to="/grocery">Grocery</Link>
+          <Link>Cart</Link>
           <button
             className="loginBtn"
             onClick={() => {
