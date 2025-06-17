@@ -1,13 +1,19 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import About from "./components/About";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 // import Grocery from "./components/Grocery";
 
 const Grocery = lazy(() => import("./components/Grocery"));
@@ -24,12 +30,23 @@ const Footer = () => {
 };
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+
+  //Dummy Authentication API simulation
+  useEffect(() => {
+    const data = {
+      name: "Swiggy User",
+    };
+    setUserName(data.name);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-      {/* <Footer /> */}
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName ,setUserName}}>
+      <div className="app">
+        <Header />
+        <Outlet />
+        {/* <Footer /> */}
+      </div>
+    </UserContext.Provider>
   );
 };
 const appRouter = createBrowserRouter([

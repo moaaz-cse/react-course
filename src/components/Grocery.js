@@ -11,5 +11,4 @@ const Grocery = () => {
     </div>
   );
 };
-
 export default Grocery;
