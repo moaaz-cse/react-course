@@ -1,10 +1,18 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 const ItemList = (props) => {
   const itemsList = props?.data;
-//   console.log("item", itemsList);
+  //   console.log("item", itemsList);
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    //Dispatch an action
+    dispatch(addItem(item));
+  };
 
   return (
-    <div>
+    <div className="text-left">
       {itemsList.map((item) => (
         <div
           className="flex justify-between bg-gray-200 my-2 p-4 rounded-lg border-b-4 border-black border-solid"
@@ -21,7 +29,12 @@ const ItemList = (props) => {
           </div>
           <div className="w-3/12 relative">
             <div className="absolute">
-              <button className="bg-black rounded-lg text-white mx-10 p-1 my-28">ADD +</button>
+              <button
+                className="bg-black rounded-lg text-white mx-10 p-1 my-28"
+                onClick={() => handleAddItem(item)}
+              >
+                ADD +
+              </button>
             </div>
             <img
               className="h-32 rounded-lg"

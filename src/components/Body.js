@@ -16,7 +16,7 @@ const Body = () => {
   const [originalRestaurantList, setOriginalRestaurantList] = useState([]);
 
   const { loggedInUser, setUserName } = useContext(UserContext);
-  console.log("loggedInUser ", setUserName);
+  // console.log("loggedInUser ", setUserName);
 
   const onlineStatus = useOnlineStatus();
   const RestaurantCardTopRated = withTopRatedLabel(RestaurantCard); //higher order component
@@ -151,7 +151,7 @@ const Body = () => {
       <div className="flex flex-wrap justify-center gap-4 px-2">
         {filteredRestaurant.map((restaurant) => (
           <Link
-            key={restaurant.info.id}
+            key={restaurant.info.name}
             to={"/restaurants/" + restaurant.info.id}
             className="w-56 h-auto"
           >
